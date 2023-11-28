@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import Computer from './domain/Computer.js';
 import Player from './domain/Player/index.js';
+import Hint from './domain/Hint.js';
 import InputView from './view/InputView.js';
 
 class App {
@@ -24,28 +25,9 @@ class App {
 
     Console.print(`data: ${this.#computer}, ${player}`);
 
-    // 입력한 숫자에 대한 결과
-    let ball = 0;
-    let strike = 0;
-
-    player.forEach((number, index) => {
-      if (number === this.#computer[index]) {
-        strike += 1;
-      } else if (this.#computer.includes(number)) {
-        ball += 1;
-      }
-    });
-
-    // 결과를 도출하는 기능
-    let hint = '낫싱';
-
-    if (ball > 0 && strike > 0) {
-      hint = `${ball}볼 ${strike}스트라이크`;
-    } else if (ball > 0) {
-      hint = `${ball}볼`;
-    } else if (strike > 0) {
-      hint = `${strike}스트라이크`;
-    }
+    const hintObject = new Hint(this.#computer, player);
+    const strike = hintObject.getStrike();
+    const hint = hintObject.getHint();
 
     Console.print(hint);
 

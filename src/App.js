@@ -66,6 +66,11 @@ class App {
     }
 
     Console.print(hint);
+
+    // 게임을 종료한 후 게임을 다시 시작하거나 완전히 종료
+    if (strike === 3) {
+      Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+    }
   }
 }
 

@@ -1,9 +1,10 @@
-import { Console } from '@woowacourse/mission-utils';
 import Computer from './domain/Computer.js';
 import Player from './domain/Player/index.js';
 import Hint from './domain/Hint.js';
+import Quit from './domain/Quit/index.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
+import VALUE from './constants/value.js';
 
 class App {
   #computer = [];
@@ -20,12 +21,6 @@ class App {
   async play() {
     const playerAnswer = await InputView.readPlayer();
     const player = new Player(playerAnswer).getPlayer();
-
-    // 유효성 검사 기능
-    const NOT_NUMBER = /[^0-9]/;
-
-    Console.print(`data: ${this.#computer}, ${player}`);
-
     const hintObject = new Hint(this.#computer, player);
     const strike = hintObject.getStrike();
     const hint = hintObject.getHint();
@@ -37,19 +32,9 @@ class App {
       OutputView.printCorrect();
 
       const quitAnswer = await InputView.readQuit();
+      const quitOrNot = new Quit(quitAnswer).getQuit();
 
-      // 게임을 다시 시작하거나 완전히 종료에 대한 유효성 검사 기능
-      if (NOT_NUMBER.test(quitAnswer)) {
-        throw new Error('[ERROR] 숫자만 입력하세요.');
-      }
-
-      if (quitAnswer !== '1' && quitAnswer !== '2') {
-        throw new Error(
-          '[ERROR] 새로 시작하려면 1, 종료하려면 2를 입력하세요.',
-        );
-      }
-
-      if (quitAnswer === '1') {
+      if (quitOrNot === VALUE.condition.newStart) {
         this.#init();
         return this.play();
       }

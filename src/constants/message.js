@@ -14,6 +14,7 @@ const MESSAGE = {
     duplication: '[ERROR] 중복된 숫자가 있습니다.',
     playerRange: '[ERROR] 1부터 9까지 서로 다른 수를 입력하세요.',
     size: '[ERROR] 3개의 수를 입력하세요.',
+    quitRange: '[ERROR] 새로 시작하려면 1, 종료하려면 2를 입력하세요.',
   },
 };
 

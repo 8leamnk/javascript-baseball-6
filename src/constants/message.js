@@ -3,6 +3,10 @@ const MESSAGE = {
     player: '숫자를 입력해주세요 : ',
   },
 
+  output: {
+    intro: '숫자 야구 게임을 시작합니다.',
+  },
+
   error: {
     notNumber: '[ERROR] 숫자만 입력하세요.',
     duplication: '[ERROR] 중복된 숫자가 있습니다.',
@@ -12,6 +16,7 @@ const MESSAGE = {
 };
 
 Object.freeze(MESSAGE.input);
+Object.freeze(MESSAGE.output);
 Object.freeze(MESSAGE.error);
 Object.freeze(MESSAGE);
 

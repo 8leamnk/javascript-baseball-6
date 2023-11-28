@@ -3,12 +3,13 @@ import Computer from './domain/Computer.js';
 import Player from './domain/Player/index.js';
 import Hint from './domain/Hint.js';
 import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
   #computer = [];
 
   constructor() {
-    Console.print('숫자 야구 게임을 시작합니다.');
+    OutputView.printIntro();
     this.#init();
   }
 

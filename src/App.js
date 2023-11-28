@@ -11,14 +11,14 @@ class App {
 
   constructor() {
     OutputView.printIntro();
-    this.#init();
-  }
-
-  #init() {
-    this.#computer = new Computer().getComputer();
   }
 
   async play() {
+    this.#computer = new Computer().getComputer();
+    return this.#startGame();
+  }
+
+  async #startGame() {
     const playerAnswer = await InputView.readPlayer();
     const player = new Player(playerAnswer).getPlayer();
     const hintObject = new Hint(this.#computer, player);
@@ -27,22 +27,22 @@ class App {
 
     OutputView.printHint(hint);
 
-    // 게임을 종료한 후 게임을 다시 시작하거나 완전히 종료
     if (strike === 3) {
-      OutputView.printCorrect();
-
-      const quitAnswer = await InputView.readQuit();
-      const quitOrNot = new Quit(quitAnswer).getQuit();
-
-      if (quitOrNot === VALUE.condition.newStart) {
-        this.#init();
-        return this.play();
-      }
-
-      return '';
+      return this.#endGame();
     }
+    return this.#startGame();
+  }
 
-    return this.play();
+  async #endGame() {
+    OutputView.printCorrect();
+
+    const quitAnswer = await InputView.readQuit();
+    const quitOrNot = new Quit(quitAnswer).getQuit();
+
+    if (quitOrNot === VALUE.condition.newStart) {
+      return this.play();
+    }
+    return '';
   }
 }
 

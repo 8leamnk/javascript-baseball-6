@@ -9,6 +9,10 @@ const OutputView = {
   printHint(hint) {
     Console.print(hint);
   },
+
+  printCorrect() {
+    Console.print(MESSAGE.output.correct);
+  },
 };
 
 export default OutputView;

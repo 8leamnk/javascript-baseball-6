@@ -11,11 +11,11 @@ class Computer {
   #setComputer() {
     const { size, start, end } = VALUE.condition;
 
-    while (this.#computer.length < size) {
+    while (this.#computer.size < size) {
       const number = Random.pickNumberInRange(start, end);
 
-      if (!this.#computer.includes(number)) {
-        this.#computer.push(number);
+      if (!this.#computer.has(number)) {
+        this.#computer.add(number);
       }
     }
   }

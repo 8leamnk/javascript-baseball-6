@@ -6,10 +6,10 @@ class App {
 
   constructor() {
     Console.print('숫자 야구 게임을 시작합니다.');
-    this.init();
+    this.#init();
   }
 
-  init() {
+  #init() {
     this.#computer = new Computer().getComputer();
   }
 
@@ -89,7 +89,7 @@ class App {
       }
 
       if (quitAnswer === '1') {
-        this.init();
+        this.#init();
         return this.play();
       }
 

@@ -5,6 +5,10 @@ const OutputView = {
   printIntro() {
     Console.print(MESSAGE.output.intro);
   },
+
+  printHint(hint) {
+    Console.print(hint);
+  },
 };
 
 export default OutputView;

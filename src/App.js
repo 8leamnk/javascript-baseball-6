@@ -30,7 +30,7 @@ class App {
     const strike = hintObject.getStrike();
     const hint = hintObject.getHint();
 
-    Console.print(hint);
+    OutputView.printHint(hint);
 
     // 게임을 종료한 후 게임을 다시 시작하거나 완전히 종료
     if (strike === 3) {

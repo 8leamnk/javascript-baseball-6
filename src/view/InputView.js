@@ -7,6 +7,12 @@ const InputView = {
 
     return answer;
   },
+
+  async readQuit() {
+    const answer = await Console.readLineAsync(MESSAGE.input.quit);
+
+    return answer;
+  },
 };
 
 export default InputView;

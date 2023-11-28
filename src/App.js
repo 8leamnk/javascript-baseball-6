@@ -36,9 +36,7 @@ class App {
     if (strike === 3) {
       OutputView.printCorrect();
 
-      const quitAnswer = await Console.readLineAsync(
-        '게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.',
-      );
+      const quitAnswer = await InputView.readQuit();
 
       // 게임을 다시 시작하거나 완전히 종료에 대한 유효성 검사 기능
       if (NOT_NUMBER.test(quitAnswer)) {

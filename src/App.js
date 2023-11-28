@@ -1,9 +1,14 @@
 import { Console, Random } from '@woowacourse/mission-utils';
 
 class App {
-  async play() {
-    Console.print('숫자 야구 게임을 시작합니다.');
+  #computer = [];
 
+  constructor() {
+    Console.print('숫자 야구 게임을 시작합니다.');
+    this.init();
+  }
+
+  init() {
     const computer = [];
 
     while (computer.length < 3) {
@@ -14,6 +19,10 @@ class App {
       }
     }
 
+    this.#computer = [...computer];
+  }
+
+  async play() {
     const playerAnswer = await Console.readLineAsync('숫자를 입력해주세요 : ');
     const player = [];
 
@@ -24,7 +33,7 @@ class App {
       throw new Error('[ERROR] 숫자만 입력하세요.');
     }
 
-    playerAnswer.forEach((string) => {
+    playerAnswer.split('').forEach((string) => {
       const number = Number(string);
 
       if (player.includes(number)) {
@@ -42,14 +51,16 @@ class App {
       throw new Error('[ERROR] 3개의 수를 입력하세요.');
     }
 
+    Console.print(`data: ${this.#computer}, ${player}`);
+
     // 입력한 숫자에 대한 결과
     let ball = 0;
     let strike = 0;
 
     player.forEach((number, index) => {
-      if (number === computer[index]) {
+      if (number === this.#computer[index]) {
         strike += 1;
-      } else if (computer.includes(number)) {
+      } else if (this.#computer.includes(number)) {
         ball += 1;
       }
     });
@@ -80,12 +91,21 @@ class App {
         throw new Error('[ERROR] 숫자만 입력하세요.');
       }
 
-      if (quitAnswer !== '1' || quitAnswer !== '2') {
+      if (quitAnswer !== '1' && quitAnswer !== '2') {
         throw new Error(
           '[ERROR] 새로 시작하려면 1, 종료하려면 2를 입력하세요.',
         );
       }
+
+      if (quitAnswer === '1') {
+        this.init();
+        return this.play();
+      }
+
+      return '';
     }
+
+    return this.play();
   }
 }
 

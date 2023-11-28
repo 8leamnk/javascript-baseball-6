@@ -64,6 +64,8 @@ class App {
     } else if (strike > 0) {
       hint = `${strike}스트라이크`;
     }
+
+    Console.print(hint);
   }
 }
 

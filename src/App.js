@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Computer from './domain/Computer.js';
+import Player from './domain/Player/index.js';
 import InputView from './view/InputView.js';
 
 class App {
@@ -15,33 +16,11 @@ class App {
   }
 
   async play() {
-    const playerAnswer = InputView.readPlayer();
-    const player = [];
+    const playerAnswer = await InputView.readPlayer();
+    const player = new Player(playerAnswer).getPlayer();
 
     // 유효성 검사 기능
     const NOT_NUMBER = /[^0-9]/;
-
-    if (NOT_NUMBER.test(playerAnswer)) {
-      throw new Error('[ERROR] 숫자만 입력하세요.');
-    }
-
-    playerAnswer.split('').forEach((string) => {
-      const number = Number(string);
-
-      if (player.includes(number)) {
-        throw new Error('[ERROR] 중복된 숫자가 있습니다.');
-      }
-
-      if (number < 1 || number > 9) {
-        throw new Error('[ERROR] 1부터 9까지 서로 다른 수를 입력하세요.');
-      }
-
-      player.push(number);
-    });
-
-    if (player.length !== 3) {
-      throw new Error('[ERROR] 3개의 수를 입력하세요.');
-    }
 
     Console.print(`data: ${this.#computer}, ${player}`);
 

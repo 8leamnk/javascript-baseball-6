@@ -1,4 +1,5 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Console } from '@woowacourse/mission-utils';
+import Computer from './domain/Computer.js';
 
 class App {
   #computer = [];
@@ -9,17 +10,7 @@ class App {
   }
 
   init() {
-    const computer = [];
-
-    while (computer.length < 3) {
-      const number = Random.pickNumberInRange(1, 9);
-
-      if (!computer.includes(number)) {
-        computer.push(number);
-      }
-    }
-
-    this.#computer = [...computer];
+    this.#computer = new Computer().getComputer();
   }
 
   async play() {

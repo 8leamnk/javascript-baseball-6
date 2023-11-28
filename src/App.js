@@ -41,6 +41,29 @@ class App {
     if (player.length !== 3) {
       throw new Error('[ERROR] 3개의 수를 입력하세요.');
     }
+
+    // 입력한 숫자에 대한 결과
+    let ball = 0;
+    let strike = 0;
+
+    player.forEach((number, index) => {
+      if (number === computer[index]) {
+        strike += 1;
+      } else if (computer.includes(number)) {
+        ball += 1;
+      }
+    });
+
+    // 결과를 도출하는 기능
+    let hint = '낫싱';
+
+    if (ball > 0 && strike > 0) {
+      hint = `${ball}볼 ${strike}스트라이크`;
+    } else if (ball > 0) {
+      hint = `${ball}볼`;
+    } else if (strike > 0) {
+      hint = `${strike}스트라이크`;
+    }
   }
 }
 

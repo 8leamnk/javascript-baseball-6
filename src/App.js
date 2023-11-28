@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Computer from './domain/Computer.js';
+import InputView from './view/InputView.js';
 
 class App {
   #computer = [];
@@ -14,7 +15,7 @@ class App {
   }
 
   async play() {
-    const playerAnswer = await Console.readLineAsync('숫자를 입력해주세요 : ');
+    const playerAnswer = InputView.readPlayer();
     const player = [];
 
     // 유효성 검사 기능

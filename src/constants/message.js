@@ -9,6 +9,7 @@ const MESSAGE = {
     range: '[ERROR] 1부터 9까지의 숫자만 입력해 주세요.',
     duplication: '[ERROR] 중복된 숫자가 있습니다.',
     length: '[ERROR] 3개의 숫자를 입력해 주세요.',
+    decision: '[ERROR] 1 또는 2의 숫자여야 합니다.',
   },
 };
 

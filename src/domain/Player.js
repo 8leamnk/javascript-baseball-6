@@ -12,7 +12,9 @@ class Player {
   #validate(answer) {
     Util.vlidateNumber(answer);
 
-    answer.split('').forEach((number) => {
+    answer.split('').forEach((numberString) => {
+      const number = Number(numberString);
+
       Player.#validateRange(number);
       this.#validateDuplication(number);
     });

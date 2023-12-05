@@ -8,8 +8,8 @@ const InputView = {
     return answer;
   },
 
-  async readEndGame() {
-    const answer = await Console.readLineAsync(MESSAGE.input.endGame);
+  async readEDecision() {
+    const answer = await Console.readLineAsync(MESSAGE.input.decision);
 
     return answer;
   },

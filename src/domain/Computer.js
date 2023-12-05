@@ -1,11 +1,7 @@
 import { Random } from '@woowacourse/mission-utils';
+import VALUE from '../constants/value.js';
 
 class Computer {
-  static #RANGE = {
-    start: 1,
-    end: 9,
-  };
-
   #computer = new Set();
 
   constructor() {
@@ -13,7 +9,7 @@ class Computer {
   }
 
   #createComputer() {
-    const { start, end } = Computer.#RANGE;
+    const { start, end } = VALUE.range;
 
     while (this.#computer.size < 3) {
       const number = Random.pickNumberInRange(start, end);

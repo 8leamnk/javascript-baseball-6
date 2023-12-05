@@ -1,10 +1,16 @@
+import Player from './domain/Player.js';
 import InputView from './view/InputView.js';
 
 class App {
-  async play() {}
+  async play() {
+    const player = await App.#executePlayer();
+  }
 
-  async #executeNumbers() {
+  static async #executePlayer() {
     const answer = await InputView.readNumbers();
+    const player = new Player(answer).getPlayer();
+
+    return player;
   }
 
   async #executeEndGame() {
